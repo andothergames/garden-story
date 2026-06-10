@@ -63,8 +63,8 @@ async def main():
         
         asyncio.sleep(0)
 
-        # Quit cleanly
-        pygame.quit()
-        sys.exit()
+    # Quit cleanly
+    pygame.quit()
+    sys.exit()
 
-    asyncio.run(main())
+asyncio.run(main())
