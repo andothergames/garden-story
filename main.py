@@ -16,6 +16,7 @@ async def main():
     # Colors
     WHITE = (255, 255, 255)
     BLUE = (50, 100, 255)
+    YELLOW = (255, 255, 0)
 
     # Ball properties
     ball_x = WIDTH // 2
@@ -25,6 +26,9 @@ async def main():
 
     # Clock for frame rate
     clock = pygame.time.Clock()
+    
+    trail = []
+
 
     # Main game loop
     running = True
@@ -46,6 +50,8 @@ async def main():
             ball_y -= speed
         if keys[pygame.K_DOWN]:
             ball_y += speed
+            
+        trail.append((ball_x, ball_y))
 
         # Keep the ball on the screen
         ball_x = max(ball_radius, min(ball_x, WIDTH - ball_radius))
@@ -53,6 +59,12 @@ async def main():
 
         # Draw everything
         screen.fill(WHITE)
+
+        # Draw the trail
+        for pos in trail:
+            pygame.draw.circle(screen, YELLOW, pos, 5)
+
+        # Draw the ball
         pygame.draw.circle(screen, BLUE, (ball_x, ball_y), ball_radius)
 
         # Update display
